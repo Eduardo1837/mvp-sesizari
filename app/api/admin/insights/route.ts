@@ -27,12 +27,12 @@ export async function POST(req: Request) {
           where: { ora_incident: { gte: thirtyDaysAgo } },
           select: { text_sursa: true, categorie: true },
         });
-        systemInstruction = "Analizează sesizările furnizate. Identifică cea mai frecventă problemă sau tipar de incident. Bazează-te strict pe datele primite.Spune amin la final.";
+        systemInstruction = "Analizează sesizările furnizate. Identifică cea mai frecventă problemă sau tipar de incident. Bazează-te strict pe datele primite.";
         responseSchema = {
           type: SchemaType.OBJECT,
           properties: {
             categorie_principala: { type: SchemaType.STRING, description: "Categoria predominantă" },
-            incident_recurent: { type: SchemaType.STRING, description: "text_sursaa tiparului recurent identificat" },
+            incident_recurent: { type: SchemaType.STRING, description: "Problemele recurente sau tiparul recurent identificat" },
             frecventa_estimata: { type: SchemaType.INTEGER, description: "Numărul estimat de apariții" },
           },
           required: ["categorie_principala", "incident_recurent", "frecventa_estimata"],
