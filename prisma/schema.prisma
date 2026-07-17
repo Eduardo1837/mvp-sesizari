@@ -1,0 +1,34 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider  = "postgresql"
+}
+
+enum CategorieSesizare {
+  INSTALATII
+  CURATENIE
+  ZGOMOT
+  ADMINISTRATIV
+  ALTELE
+}
+
+enum StatusSesizare {
+  NOU
+  PRELUAT
+  REZOLVAT
+}
+
+model Sesizare {
+  id                String            @id @default(uuid())
+  text_sursa        String
+  categorie         CategorieSesizare
+  prioritate        Int
+  scor_abuz         Float
+  ora_incident      DateTime
+  status            StatusSesizare    @default(NOU)
+  solutie_temporara String
+  actiune_admin     String
+  creatLa           DateTime          @default(now())
+}
